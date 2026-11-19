@@ -1,3 +1,9 @@
 captures/
 *.jpg
 __pycache__/
+datetest.py
+video_recordings/
+video_test.py
+*mp4
+*h264
+*save
