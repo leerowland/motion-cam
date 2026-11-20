@@ -1,0 +1,13 @@
+[Unit]
+Description=Run motion camera script at boot
+
+[Service]
+Type=simple
+User=motioncam
+Group=motioncam
+Restart=no
+ExecStart=/usr/bin/python3 /home/motioncam/motion_cam/capture.py
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
