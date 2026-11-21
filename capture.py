@@ -6,16 +6,22 @@ from datetime import datetime as dt
 from picamera2 import Picamera2
 from picamera2.encoders import H264Encoder, Quality
 from picamera2.outputs import PyavOutput
+import detector as det 
 
 # Variables
 pixel_thrs = 20
 count_thrs = 500
 motion_cooldown = 5 #seconds
 image_capture = 0.25 #seconds
+filming = False
 directory = "/home/motioncam/motion_cam/video_recordings"
 
 def make_directory():
     os.makedirs(f"{directory}/{dt.now().strftime('%Y-%m-%d')}", exist_ok=True)
+
+def blur(frame):
+    return cv2.GaussianBlur(frame[:height,:], (5,5), 0)
+
 
 # Creating the camera and configuring
 cam = Picamera2()
@@ -40,18 +46,19 @@ try:
     cam.set_controls(control_dict)
 
     running = True
-    filming = False
     frame_1 = cam.capture_array("lores")
     height = int((frame_1.shape[0]/1.5))
-    frame_1 = cv2.GaussianBlur(frame_1[:height,:], (5,5), 0)
+    frame_1 = blur(frame_1)
     print("Camera Running")
+
+# Main loop
     while running:
         frame_2 = cam.capture_array("lores")
-        frame_2 = cv2.GaussianBlur(frame_2[:height,:], (5,5), 0)
-        difference = np.maximum(frame_1, frame_2) - np.minimum(frame_1, frame_2)
+        frame_2 = blur(frame_2)
+        difference = det.ab_diff(frame_1, frame_2)
         frame_1 = frame_2
 
-        if (difference > pixel_thrs).sum() > count_thrs:
+        if det.is_moving(difference, pixel_thrs, count_thrs):
             last_motion_time = time.time()
             if not filming:
                 destination = (
