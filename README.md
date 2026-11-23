@@ -1,4 +1,5 @@
 # Motion Camera Project
+[![Tests](https://github.com/leerowland/motion-cam/actions/workflows/tests.yml/badge.svg)](https://github.com/leerowland/motion-cam/actions/workflows/tests.yml)
 
 Motion Camera which records when movement is detected, with a tuneable cooldown window of five seconds by default
 
