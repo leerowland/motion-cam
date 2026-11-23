@@ -43,11 +43,12 @@ subtraction, to avoid wraparound errors on unsigned 8-bit values.
 - Blurred images before comparison to smooth out anomalous recordings and prevent false detections.
 - Exposure and white balance locked after camera settles to prevent auto adjustments registering as motion.
 - Detection logic kept in separate script to allow testing without camera hardware.
+- System termination logic added for clean shutdown on termination signal.
 
 ## Limitations
 - Exposure and white balance lock could cause issues if the camera is run for a long time and light conditions change. This could be amended by having the exposure and white balance checked periodically.
 - Videos currently kept on device meaning the user has to access the system via SSH to view recordings.
-- Video is currently lost if stream cut during recording.
+- Video is currently lost if power cut to device.
 
 ## Next steps
 - Introduce pre-roll recording to grab the frames prior to motion starting rather than the current which starts after motion has been detected.
