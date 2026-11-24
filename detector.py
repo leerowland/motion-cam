@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def is_moving(difference, pixel_thrs, count_thrs):
     return (difference > pixel_thrs).sum() > count_thrs
 

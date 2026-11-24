@@ -2,6 +2,7 @@ import numpy as np
 
 import detector as det
 
+
 def test_ab_diff():
     ar_1 = np.zeros((4,4), dtype=np.uint8)
     ar_2 = np.zeros((4,4), dtype=np.uint8)
