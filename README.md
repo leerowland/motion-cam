@@ -12,7 +12,7 @@ All detection carried out on device via array comparison with tuneable threshold
 - 3D printed casing
 
 ## How it works
-The camera module provides a main stream and low resolution stream, the detection logic takes a low resolution stream array frame every 0.25 seconds (tuneable parameter) in YUV format, slicing only the Y section of the output and blurring it, then comparing the difference to the previous frame. Frames are dropped after use so that only two are held in memory. Motion is detected by counting the number of pixels which register a brightness change of a certain amount. The number of pixels which register the change, `count_thrs`, is by default set to 500. The brightness change, `pixel_thrs`, is by default set to 20. On detection of motion, video is captured via the main stream and saved to device. Files are organised by date and time of capture.
+The camera camera camera module provides a main stream and low resolution stream, the detection logic takes a low resolution stream array frame every 0.25 seconds (tuneable parameter) in YUV format, slicing only the Y section of the output and blurring it, then comparing the difference to the previous frame. Frames are dropped after use so that only two are held in memory. Motion is detected by counting the number of pixels which register a brightness change of a certain amount. The number of pixels which register the change, `count_thrs`, is by default set to 500. The brightness change, `pixel_thrs`, is by default set to 20. On detection of motion, video is captured via the main stream and saved to device. Files are organised by date and time of capture.
 
 ## Running
 - Run `capture.py` for main loop and recording. 
