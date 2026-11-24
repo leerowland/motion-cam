@@ -1,6 +1,6 @@
-import time
 import os
 import signal
+import time
 from datetime import datetime as dt
 
 import cv2
@@ -8,7 +8,7 @@ from picamera2 import Picamera2
 from picamera2.encoders import H264Encoder, Quality
 from picamera2.outputs import PyavOutput
 
-import detector as det 
+import detector as det
 
 # Variables
 pixel_thrs = 20
@@ -54,7 +54,7 @@ try:
 
     cam.set_controls(control_dict)
     frame_1 = cam.capture_array("lores")
-    height = int((frame_1.shape[0]/1.5))
+    height = int(frame_1.shape[0]/1.5)
     frame_1 = blur(frame_1, height)
     print("Camera Running")
 
@@ -78,7 +78,7 @@ try:
                 cam.start_encoder(encoder, output, quality=Quality.MEDIUM)
                 print("Starting Filming")
 
-        elif filming:
+        elif filming: #noqa: SIM102
             if last_motion_time + motion_cooldown <= time.time():
                 cam.stop_encoder()
                 print("Stopping Filming")
