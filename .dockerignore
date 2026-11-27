@@ -1,0 +1,4 @@
+video_recordings/
+__pycache__/
+.git/
+*.mp4
